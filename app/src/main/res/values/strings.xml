@@ -11,8 +11,25 @@
     <string name="cancel">Cancel</string>
     <string name="save">Save</string>
     <string name="shoe_name">Shoe name</string>
-    <string name="company">Company</string>
+    <string name="company">Company:</string>
     <string name="size">Size</string>
     <string name="description">Description</string>
     <string name="shoe_details">Shoe\'s Details</string>
+    <string name="nike">Nike Air Max 270</string>
+    <string name="name_label">Name: </string>
+    <string name="size_label">Size:</string>
+    <string name="shoe_list">Shoe List</string>
+    <string name="add_shoe">Add shoe</string>
+    <string name="instruction_fragment">Instructions</string>
+    <string name="shoe_item_details">&lt;b>Shoe Name: &lt;/b>%s &lt;br>
+                                        &lt;b>Company: &lt;/b>%s &lt;br>
+                                        &lt;b>Size: &lt;/b>%s &lt;br>
+                                        &lt;b>Description: &lt;/b>%s &lt;br>
+    </string>
+    <string name="about_app">About</string>
+    <string name="instruction"> In this application the user can see a list of shoes for buying them
+    based on the information provided. \n \n In the "Shoe List" screen are the list of the available
+    shoes, those are a selection of the top seller shoes brand in the world. \n\n The user can also
+        add a shoe in order to keep the app up to date with the best shoes suggested for each user</string>
+    <string name="welcome_message"><i>\"A nice pair of shoes can make your day happier\"</i> </string>
 </resources>

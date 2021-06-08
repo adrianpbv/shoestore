@@ -1,19 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:tools="http://schemas.android.com/tools"
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.udacity.shoestore.screens.login.LoginFragment">
+
+    <data>
+        <variable
+            name="loginviewmodel"
+            type="com.udacity.shoestore.screens.login.LoginViewModel" />
+    </data>
+
+<!-- The constraint layout allow to place the views in a convenient position easily by constraints.
+     It makes the layout more adaptable for several devices. It's more convenient than LinearLayout
+     because it makes a layout flatter hierarchy and easy to understand (more readable) -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        >
 
 
         <TextView
             android:id="@+id/login_text"
+            style="@style/textViewTitles"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="32dp"
             android:layout_marginEnd="16dp"
             android:text="@string/login_screen"
             android:textAlignment="center"
@@ -23,6 +37,7 @@
 
         <EditText
             android:id="@+id/email_editt"
+            style="@style/textViewInputs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -38,12 +53,13 @@
 
         <TextView
             android:id="@+id/pass_text"
+            style="@style/textViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="16dp"
-            android:text="TextView"
+            android:text="@string/password"
             app:layout_constraintBottom_toTopOf="@+id/pass_editt"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
@@ -52,6 +68,7 @@
 
         <TextView
             android:id="@+id/user_email_text"
+            style="@style/textViewStyle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -84,10 +101,12 @@
 
         <Button
             android:id="@+id/create_button"
+            style="@style/next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:text="@string/create_acc"
+            android:theme="@style/next"
             app:layout_constraintBaseline_toBaselineOf="@+id/login_button"
             app:layout_constraintEnd_toStartOf="@+id/login_button"
             app:layout_constraintHorizontal_chainStyle="spread"
@@ -95,6 +114,7 @@
 
         <Button
             android:id="@+id/login_button"
+            style="@style/next"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -102,6 +122,7 @@
             android:layout_marginEnd="16dp"
             android:layout_marginBottom="16dp"
             android:text="@string/login_screen"
+            android:theme="@style/next"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
