@@ -4,23 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.udacity.shoestore.screens.shoe_details.ShoeDetailFragment">
 
-<!--    The constraint layout allow in this case place the views in a convenient way, every
-one is related to each other. This layout fits to most of the mobile devices. -->
+    <data>
+        <import type="com.udacity.shoestore.models.Converter"/>
 
-<!--    In the rubrics says to do the following: Detail screen uses the <data> element.
-        I think that in my case it is not useful because in this fragment the UI doesn't hold
-        any data, it just take the information about the new shoe and sends it to the list screen.
-        The list screen does need to implement the <variable> <data> ... schema because it holds the
-        shoe list, and when this one changes, the changes must be reflected in the UI. The
-        textView's strings of the details screen are saved as resources as they are static.
+        <variable
+            name="newshoe"
+            type="com.udacity.shoestore.models.Shoe" />
+    </data>
 
-        Another approach is to pass the List<Shoe> from the list screen to the details screen and
-        then the new shoe is added to the list of shoe variable and later sends it back to the list
-        screen with the new shoe inside the list. This is done by using safeArgs which I already use
-        in the first scope. If you want me to implement this approach, please let me know.
+
+<!--    Implementing the two-ways data binding was a good challenge, but I enjoyed doing it.
+       I hope I have fulfilled this requirement of the rubrics.
 
         I would appreciate any suggestion to improve the app and the most important thing to learn
         more about Android. Thank you. -->
+
+    <!--    The constraint layout allow in this case place the views in a convenient way, every
+    one is related to each other. This layout fits to most of the mobile devices. -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -38,6 +38,11 @@ one is related to each other. This layout fits to most of the mobile devices. --
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
+
+<!--            The linearlayout is a convenient groupView tag to wrap all the views vertically
+            inside the scrollview parent tag. The user will be able to scroll up or down if
+            any text is taking several lines or even if they rotates the device horizontally
+            (landscape mode).  -->
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -58,7 +63,8 @@ one is related to each other. This layout fits to most of the mobile devices. --
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:hint="@string/shoe_name"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:text="@={newshoe.name}"/>
 
                 <TextView
                     android:id="@+id/textView5"
@@ -76,7 +82,8 @@ one is related to each other. This layout fits to most of the mobile devices. --
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:hint="@string/company"
-                    android:inputType="text" />
+                    android:inputType="text"
+                    android:text="@={newshoe.company}"/>
 
                 <TextView
                     android:id="@+id/textView6"
@@ -87,13 +94,14 @@ one is related to each other. This layout fits to most of the mobile devices. --
                     android:text="@string/size" />
 
                 <EditText
-                    android:id="@+id/size_editt"
+                    android:id="@+id/sizeEditt"
                     style="@style/textViewInputs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="2dp"
                     android:hint="@string/size"
-                    android:inputType="number" />
+                    android:inputType="number"
+                    android:text="@={Converter.doubleToString(newshoe.size)}"/>
 
                 <TextView
                     android:id="@+id/textView7"
@@ -110,7 +118,8 @@ one is related to each other. This layout fits to most of the mobile devices. --
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/description"
-                    android:inputType="textMultiLine" />
+                    android:inputType="textMultiLine"
+                    android:text="@={newshoe.description}"/>
 
 
             </LinearLayout>

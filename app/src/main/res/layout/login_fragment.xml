@@ -11,9 +11,9 @@
             type="com.udacity.shoestore.screens.login.LoginViewModel" />
     </data>
 
-<!-- The constraint layout allow to place the views in a convenient position easily by constraints.
+<!-- The constraint layout allows to place the views in a convenient position easily by constraints.
      It makes the layout more adaptable for several devices. It's more convenient than LinearLayout
-     because it makes a layout flatter hierarchy and easy to understand (more readable) -->
+     because it makes a flatter view hierarchy and easy to understand (more readable) -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

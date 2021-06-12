@@ -5,13 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.udacity.shoestore.screens.shoe_list.ShopFragment">
 
-    <data>
-        <variable
-            name="shopview"
-            type="com.udacity.shoestore.screens.shoe_list.ShopViewModel" />
-    </data>
-
-<!--    The constraint layout allow to place the different views in a convenient a way that
+<!--    The constraint layout allows to place the different views in a convenient a way that
 is a flatter view hierarchy than other ways.  -->
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -40,11 +34,24 @@ is a flatter view hierarchy than other ways.  -->
             android:layout_height="match_parent"
             android:layout_margin="16dp">
 
+<!--        the Linear Layout allows to put the views vertically one below the other. As here
+           I'm using scrollView, the linearLayout wraps all the shoes (views in fact) and if there
+           are many shoes the user will be able to scroll down or up to see them fluently.  -->
+
             <LinearLayout
                 android:id="@+id/listshop_linear"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/first_shoe_text"
+                    style="@style/textViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/insert_first_shoe"
+                    android:textAlignment="center" />
+            </LinearLayout>
         </ScrollView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

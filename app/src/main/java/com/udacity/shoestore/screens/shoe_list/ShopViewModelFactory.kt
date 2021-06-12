@@ -8,7 +8,8 @@
     class ShopViewModelFactory(private val shoe: Shoe?) : ViewModelProvider.Factory {
         override fun <T : ViewModel?> create(modelClass: Class<T>): T {
             if (modelClass.isAssignableFrom(ShopViewModel::class.java)) {
-                return ShopViewModel(shoe) as T
+                //return ShopViewModel(shoe) as
+                return ShopViewModel() as T
             }
             throw IllegalArgumentException("Unknown ViewModel class")
         }

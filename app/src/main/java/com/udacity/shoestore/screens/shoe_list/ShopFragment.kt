@@ -1,5 +1,6 @@
 package com.udacity.shoestore.screens.shoe_list
 
+import android.os.Build
 import android.os.Bundle
 import android.text.Html
 import android.text.Spanned
@@ -7,11 +8,13 @@ import android.util.Log
 import android.view.*
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.core.view.marginTop
+import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.get
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
@@ -29,8 +32,8 @@ import com.udacity.shoestore.models.Shoe
 class ShopFragment : Fragment() {
     private lateinit var binding: ShopFragmentBinding
     private lateinit var viewModel: ShopViewModel
-    private lateinit var viewModelFactory: ShopViewModelFactory
-    //private lateinit var listview: LinearLayout
+    //private lateinit var viewModelFactory: ShopViewModelFactory
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,23 +46,24 @@ class ShopFragment : Fragment() {
             inflater, R.layout.shop_fragment, container, false
         )
 
-        //receiving a shoe from the ShoeDetailFragment
-        val shopFragmentArgs by navArgs<ShopFragmentArgs>()
-        viewModelFactory = ShopViewModelFactory(shopFragmentArgs.shoe)
-        viewModel = ViewModelProvider(this, viewModelFactory)
-            .get(ShopViewModel::class.java)
+        viewModel = ViewModelProvider(this).get(ShopViewModel::class.java)
 
-        //passing out the viewModel to the layout binding variable
-        binding.shopview = viewModel
         binding.lifecycleOwner = this
 
-        // if the shoeList change the changes are recreated on the UI, thus when the user adds
-        // another shoe from the shoe's details screen and come back, this shoe's list is refreshed
+        sharedViewModel.sharedListShoe.observe(viewLifecycleOwner, { shoeList ->
+            viewModel.newShoeList(shoeList)
+        })
+
+        // if the shoe list changes the changes are recreated on the UI, thus when the user adds
+        // another shoe from the shoe's details screen and come back, this shoe list is refreshed
         viewModel.shoeList.observe(viewLifecycleOwner, Observer { shoeList ->
-            for (shoe in shoeList) {
-                // here there are two way of accomplish the target, 'i prefer the first one'
-                binding.listshopLinear.addView(getShoe(inflater,container, shoe))
-                //binding.listshopLinear.addView(createView(shoe))
+            if (!shoeList.isEmpty()){
+                binding.firstShoeText.visibility = View.GONE
+                for (shoe in shoeList) {
+                    // here there are two way of accomplish the target, 'i prefer the first one'
+                    binding.listshopLinear.addView(getShoe(inflater,container, shoe))
+                    //binding.listshopLinear.addView(createView(shoe))
+                }
             }
         })
 
@@ -104,6 +108,7 @@ class ShopFragment : Fragment() {
     /**
      * this function return a single textView with all the formatted shoe's information
      */
+    @RequiresApi(Build.VERSION_CODES.N)
     fun createView(shoe: Shoe): View{
         val textView = TextView(this.context)
         //setting up the params related to the parent of the textView
@@ -125,11 +130,5 @@ class ShopFragment : Fragment() {
         textView.layoutParams = layoutParams
 
         return textView
-    }
-
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        Log.i("ShopFragment", "OnDestroy")
     }
 }
