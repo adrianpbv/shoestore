@@ -8,15 +8,18 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.udacity.shoestore.R
 import com.udacity.shoestore.databinding.LoginFragmentBinding
+import com.udacity.shoestore.screens.shoe_list.SharedViewModel
 
 class LoginFragment : Fragment() {
     private lateinit var binding: LoginFragmentBinding
     private lateinit var viewModel: LoginViewModel
+    private val sharedViewModel: SharedViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -37,7 +40,7 @@ class LoginFragment : Fragment() {
         binding.lifecycleOwner = this
 
 
-        // this observer is activated if the user attempt to login and the information doesn't match
+        // this observer is activated if the user attempts to login and the information doesn't match
         viewModel.wronglogin.observe(viewLifecycleOwner, Observer { wrongData ->
             if (wrongData) {
                 Toast.makeText(
@@ -48,13 +51,20 @@ class LoginFragment : Fragment() {
             }
         })
 
-        // this observer is activated is the login was right or the user create a new account. then
-        // the user will go to the welcome screen
+        // this observer is activated is the login was right or the user creates a new account.
+        // then the user will go to the welcome screen
         viewModel.loginOk.observe(viewLifecycleOwner, Observer { login ->
             if (login) {
                 findNavController().navigate(LoginFragmentDirections.toWelcomeScreenAction())
                 viewModel.loginCompleted()
             }
+        })
+
+        //this observer, tells the sharedViewModel that the email has changed
+        viewModel.email.observe(viewLifecycleOwner, Observer { email ->
+            // if a different email is actually logging, the shoe list will be a new one, as a new
+            // user email is logging in the app
+            sharedViewModel.setEmail(email)
         })
 
         // when this button is pressed an account will be created
@@ -69,7 +79,7 @@ class LoginFragment : Fragment() {
             }
         }
 
-        // this button checks if the account exists, if it is the login will pass
+        // this button checks if the account exists, if it is, the login will pass
         binding.loginButton.setOnClickListener { view ->
             val email = binding.emailEditt.text.toString()
             val pass = binding.passEditt.text.toString()

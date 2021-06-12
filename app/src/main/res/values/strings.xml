@@ -30,6 +30,7 @@
     <string name="instruction"> In this application the user can see a list of shoes for buying them
     based on the information provided. \n \n In the "Shoe List" screen are the list of the available
     shoes, those are a selection of the top seller shoes brand in the world. \n\n The user can also
-        add a shoe in order to keep the app up to date with the best shoes suggested for each user</string>
+        add shoes in order to keep the app up to date with the best shoes suggested for each user.</string>
     <string name="welcome_message"><i>\"A nice pair of shoes can make your day happier\"</i> </string>
+    <string name="insert_first_shoe">Insert your first shoe!</string>
 </resources>
