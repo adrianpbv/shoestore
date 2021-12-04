@@ -27,10 +27,9 @@
                                         &lt;b>Description: &lt;/b>%s &lt;br>
     </string>
     <string name="about_app">About</string>
-    <string name="instruction"> In this application the user can see a list of shoes for buying them
-    based on the information provided. \n \n In the "Shoe List" screen are the list of the available
-    shoes, those are a selection of the top seller shoes brand in the world. \n\n The user can also
-        add shoes in order to keep the app up to date with the best shoes suggested for each user.</string>
+    <string name="instruction"> In this application you can see a list of shoes for buying them
+    based on the information provided. \n \n In the "Shoe List" screen are the list of available
+    shoes. \n\n Add shoes in order to keep the app up to date with the best shoes suggested for each user.</string>
     <string name="welcome_message"><i>\"A nice pair of shoes can make your day happier\"</i> </string>
     <string name="insert_first_shoe">Insert your first shoe!</string>
 </resources>
